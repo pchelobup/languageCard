@@ -3,6 +3,7 @@ package ru.alina.languageCards;
 import ru.alina.languageCards.model.Card;
 import ru.alina.languageCards.model.Level;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CardData {
@@ -29,18 +30,18 @@ public class CardData {
 
     public static Long USER_ID_NOT_FOUND = UserData.ID_NOT_FOUND;
     public static Card getNew() {
-        return new Card("new", "новый");
+        return new Card("new", "новый", LocalDate.now());
     }
 
     public static Card getUpdated() {
-        return new Card(CARD_1.getId(), CARD_1.getWord(), CARD_1.getTranslation(), Level.TWO);
+        return new Card(CARD_1.getId(), CARD_1.getWord(), CARD_1.getTranslation(), Level.TWO, LocalDate.now());
     }
 
     public static void match(Card actual, Card expected) {
-        Matcher.match(actual, expected, "user");
+        Matcher.match(actual, expected, "user", "lastTaught");
     }
 
     public static void match(List<Card> actual, List<Card> expected) {
-        Matcher.match(actual, expected, "user");
+        Matcher.match(actual, expected, "user", "lastTaught");
     }
 }

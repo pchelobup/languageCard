@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
+
 @Entity(name = "card")
 public class Card extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "word", nullable = false)
@@ -24,12 +26,17 @@ public class Card extends BaseEntity {
     @NotNull
     private Level level;
 
+    @Column(name = "last_taught")
+    @NotNull
+    private LocalDate lastTaught;
+
     public Card() {
     }
 
-    public Card(String word, String translation) {
+    public Card(String word, String translation, LocalDate lastTaught) {
         this.word = word;
         this.translation = translation;
+        this.lastTaught = lastTaught;
     }
 
     public Card(Long id, String word, String translation, Level level) {
@@ -37,6 +44,14 @@ public class Card extends BaseEntity {
         this.word = word;
         this.translation = translation;
         this.level = level;
+    }
+
+    public Card(Long id, String word, String translation, Level level, LocalDate lastTaught) {
+        super(id);
+        this.word = word;
+        this.translation = translation;
+        this.level = level;
+        this.lastTaught = lastTaught;
     }
 
     public User getUser() {
@@ -69,6 +84,14 @@ public class Card extends BaseEntity {
 
     public void setLevel(Level level) {
         this.level = level;
+    }
+
+    public LocalDate getLastTaught() {
+        return lastTaught;
+    }
+
+    public void setLastTaught(LocalDate lastTaught) {
+        this.lastTaught = lastTaught;
     }
 
     @Override
