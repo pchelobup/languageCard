@@ -100,6 +100,7 @@ public class Card extends BaseEntity {
                 "word='" + word + '\'' +
                 ", translation='" + translation + '\'' +
                 ", level=" + level +
+                ", lastTaught=" + lastTaught +
                 ", id=" + id +
                 '}';
     }
