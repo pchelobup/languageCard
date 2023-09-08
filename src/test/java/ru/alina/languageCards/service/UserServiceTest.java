@@ -25,9 +25,18 @@ class UserServiceTest extends ServiceTest {
 
     @Test
     void getNotFound() {
-        assertThrows(NotFoundException.class, () -> match(userService.get(ID_NOT_FOUND), USER_1));
+        assertThrows(NotFoundException.class, () -> userService.get(ID_NOT_FOUND));
     }
 
+    @Test
+    void getByUserName() {
+        match(userService.getByUserName(USER_1.getUsername()), USER_1);
+    }
+
+    @Test
+    void getByUserNameNotFound() {
+        assertThrows(NotFoundException.class, () -> userService.getByUserName(getNew().getUsername()));
+    }
     @Test
     void getAll() {
         match(userService.getAll(), USERS);
