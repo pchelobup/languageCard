@@ -77,4 +77,13 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
         checkNotFound(userRepository.delete(id)!= 0, id.toString());
     }
+
+    @Override
+    @Transactional
+    public void enabled(Long id) {
+        User user = get(id);
+        Assert.notNull(user, "user must not be null");
+        user.setStatus(Status.DELETED);
+        update(user);
+    }
 }
