@@ -10,6 +10,7 @@ import ru.alina.languageCards.model.User;
 
 import java.time.Instant;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.alina.languageCards.UserData.*;
 
@@ -100,5 +101,13 @@ class UserServiceTest extends ServiceTest {
     @Test
     void deletedNotFound() {
         assertThrows(NotFoundException.class, () -> userService.delete(ID_NOT_FOUND));
+    }
+
+    @Test
+    void enabled() {
+        userService.enabled(USER_1.getId());
+        Status actual = userService.get(USER_1.getId()).getStatus();
+        assertThat(actual)
+                .isEqualTo(Status.DELETED);
     }
 }
