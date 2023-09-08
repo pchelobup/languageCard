@@ -5,6 +5,8 @@ FROM roles;
 DELETE
 FROM card;
 DELETE
+FROM refresh_token;
+DELETE
 FROM users;
 
 
@@ -38,3 +40,6 @@ VALUES (1, 1, 'name', 'имя', 'ONE', '2023-09-30'),
        (12, 2, 'I', 'я', 'FOUR', '2023-09-30'),
        (13, 2, 'You', 'ты', 'FIVE', '2023-09-30'),
        (14, 2, 'we', 'мы', 'ONE', '2023-09-30');
+
+INSERT INTO refresh_token(id, user_id, token, expiry_date)
+VALUES (1, 2, '282f77f2-1bcb-4ea2-ae91-d1a28c30e9fc', '2023-08-04');

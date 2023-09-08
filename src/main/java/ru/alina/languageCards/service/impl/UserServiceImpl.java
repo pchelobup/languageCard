@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getByUserName(String userName) {
+        return userRepository.findByUsername(userName).orElseThrow(() -> new NotFoundException(String.format("User with name %s does not exist", userName)));
+    }
+
+    @Override
     public List<User> getAll() {
         return userRepository.findAll();
     }

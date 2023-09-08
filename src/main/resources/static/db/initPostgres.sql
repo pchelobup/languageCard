@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS card;
+DROP TABLE IF EXISTS refresh_token;
 DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS users;
@@ -45,6 +46,15 @@ CREATE TABLE card
     level       VARCHAR(10)  NOT NULL,
     last_taught date         NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE refresh_token
+(
+    id         BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
+    user_id    BIGINT              NOT NULL,
+    token      VARCHAR(400) UNIQUE NOT NULL,
+    expiry_date DATE                NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 

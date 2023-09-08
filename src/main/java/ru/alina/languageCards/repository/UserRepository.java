@@ -7,9 +7,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.alina.languageCards.model.User;
 
+import java.util.Optional;
+
 public interface UserRepository extends JpaRepository<User, Long> {
     @Transactional
     @Modifying
     @Query("DELETE FROM users u WHERE u.id=:id")
     int delete(@Param("id") Long id);
+
+    Optional<User> findByUsername(String userName);
 }
