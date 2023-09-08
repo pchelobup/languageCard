@@ -16,6 +16,13 @@ public class ControllerErrorMessage {
         this.timestamp = new Date();
     }
 
+    public ControllerErrorMessage(int status, String message, String description, Date timestamp) {
+        this.status = status;
+        this.message = message;
+        this.description = description;
+        this.timestamp = timestamp;
+    }
+
     public int getStatus() {
         return status;
     }
