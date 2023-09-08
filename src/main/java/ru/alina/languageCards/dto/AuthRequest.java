@@ -10,6 +10,14 @@ public class AuthRequest {
     @NotBlank
     private String password;
 
+    public AuthRequest() {
+    }
+
+    public AuthRequest(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
     public String getUserName() {
         return userName;
     }

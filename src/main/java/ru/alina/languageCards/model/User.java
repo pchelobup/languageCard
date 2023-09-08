@@ -42,6 +42,12 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
+    public User(String username, String password, Role...roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = Set.of(roles);
+    }
+
     public User(String username, String password, Instant registered, Status status) {
         this.username = username;
         this.password = password;

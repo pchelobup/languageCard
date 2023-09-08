@@ -30,6 +30,10 @@ public class UserData {
         Matcher.match(actual, expected, "roles", "registered");
     }
 
+    public static void matchExPass(User actual, User expected) {
+        Matcher.match(actual, expected, "roles", "registered", "password");
+    }
+
     public static void match(List<User> actual, List<User> expected) {
         Matcher.match(actual, expected,  "roles");
     }
