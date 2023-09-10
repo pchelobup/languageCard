@@ -1,5 +1,6 @@
 package ru.alina.languageCards.web.rest;
 
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -82,7 +83,7 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<?> createNewUser(@RequestBody AuthRequest registrationUser) {
+    public ResponseEntity<?> createNewUser(@RequestBody @Valid AuthRequest registrationUser) {
         User user = new User(registrationUser.getUserName(), passwordEncoder.encode(registrationUser.getPassword()), Instant.now(), Status.ACTIVE);
         User created = userService.create(user);
         log.info("IN createNewUse user with id {} was registered ", created.id());

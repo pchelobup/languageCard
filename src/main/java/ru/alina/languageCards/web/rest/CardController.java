@@ -1,6 +1,7 @@
 package ru.alina.languageCards.web.rest;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,14 +40,14 @@ public class CardController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody CardRequestCreateTo cardRequestCreateTo, HttpServletRequest request) {
+    public ResponseEntity<?> create(@RequestBody @Valid CardRequestCreateTo cardRequestCreateTo, HttpServletRequest request) {
         Card card = modelMapper.map(cardRequestCreateTo, Card.class);
         return new ResponseEntity<>(modelMapper.map(cardService.create(card, jwtTokenUtils.getUserId(request)), CardTo.class), HttpStatus.CREATED );
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody CardTo cardTo, HttpServletRequest request) {
+    public void update(@RequestBody @Valid CardTo cardTo, HttpServletRequest request) {
         Card card = cardService.get(cardTo.getId(), jwtTokenUtils.getUserId(request));
         card.setWord(cardTo.getWord());
         card.setTranslation(card.getTranslation());

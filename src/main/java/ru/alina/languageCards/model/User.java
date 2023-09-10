@@ -63,6 +63,15 @@ public class User extends BaseEntity {
         this.status = status;
     }
 
+    public User(Long id, String username, String password, Instant registered, Status status, Set<Role> roles) {
+        super(id);
+        this.username = username;
+        this.password = password;
+        this.registered = registered;
+        this.status = status;
+        this.roles = roles;
+    }
+
     public String getUsername() {
         return username;
     }

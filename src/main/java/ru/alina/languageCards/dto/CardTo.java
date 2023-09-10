@@ -1,9 +1,17 @@
 package ru.alina.languageCards.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class CardTo {
+
+    @NotNull
     private Long id;
+
+    @NotBlank
     private String word;
 
+    @NotBlank
     private String translation;
 
     public CardTo() {

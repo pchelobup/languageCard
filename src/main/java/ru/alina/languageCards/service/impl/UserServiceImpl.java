@@ -64,10 +64,10 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void update(User user) {
-        Assert.notNull(user, "user is null");
         ValidationUtil.isNotNew(user);
-        Assert.notNull(user.getRegistered(), "registered time can not be null");
-        Assert.notNull(user.getStatus(), "status can not be null");
+        ValidationUtil.notNull(user, user.getRegistered(), user.getStatus());
+        ValidationUtil.notNullAndNotEmpty(user.getUsername(), user.getPassword());
+        ValidationUtil.notNullAndNotEmpty(user.getRoles());
         userRepository.save(user);
 
     }

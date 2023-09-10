@@ -1,14 +1,30 @@
 package ru.alina.languageCards.dto;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class CardRequestCreateTo {
+
+    @NotBlank
     private String word;
 
+    @NotBlank
     private String translation;
 
+    @NotNull
     private LocalDate lastTaught;
+
+    public CardRequestCreateTo() {
+    }
+
+    public CardRequestCreateTo(String word, String translation, LocalDate lastTaught) {
+        this.word = word;
+        this.translation = translation;
+        this.lastTaught = lastTaught;
+    }
 
     public String getWord() {
         return word;

@@ -4,7 +4,7 @@ import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.alina.languageCards.exception.NotFoundException;
-import ru.alina.languageCards.exception.UnsuitableEntity;
+import ru.alina.languageCards.exception.UnsuitableArgument;
 import ru.alina.languageCards.model.Status;
 import ru.alina.languageCards.model.User;
 
@@ -57,7 +57,7 @@ class UserServiceTest extends ServiceTest {
 
     @Test
     void createAlreadyExist() {
-        assertThrows(UnsuitableEntity.class, () -> userService.create(USER_1));
+        assertThrows(UnsuitableArgument.class, () -> userService.create(USER_1));
     }
 
     @Test
@@ -79,17 +79,17 @@ class UserServiceTest extends ServiceTest {
 
     @Test
     void updateNew() {
-        assertThrows(UnsuitableEntity.class, () -> userService.update(getNew()));
+        assertThrows(UnsuitableArgument.class, () -> userService.update(getNew()));
     }
 
     @Test
     void UpdateWithException() {
-        validateRootCause(ConstraintViolationException.class, () -> userService.update(new User(USER_1.getId(), " ", USER_1.getPassword(), Instant.now(), Status.ACTIVE)));
-        validateRootCause(ConstraintViolationException.class, () -> userService.update(new User(USER_1.getId(), null, USER_1.getPassword(), Instant.now(), Status.ACTIVE)));
-        validateRootCause(ConstraintViolationException.class, () -> userService.update(new User(USER_1.getId(), USER_1.getUsername(), "   ", Instant.now(), Status.ACTIVE)));
-        validateRootCause(ConstraintViolationException.class, () -> userService.update(new User(USER_1.getId(), USER_1.getUsername(), null, Instant.now(), Status.ACTIVE)));
-        validateRootCause(IllegalArgumentException.class, () -> userService.update(new User(USER_1.getId(), USER_1.getUsername(), USER_1.getPassword(), null, Status.ACTIVE)));
-        validateRootCause(IllegalArgumentException.class, () -> userService.update(new User(USER_1.getId(), USER_1.getUsername(), USER_1.getPassword(), Instant.now(), null)));
+        validateRootCause(UnsuitableArgument.class, () -> userService.update(new User(USER_1.getId(), " ", USER_1.getPassword(), Instant.now(), Status.ACTIVE)));
+        validateRootCause(UnsuitableArgument.class, () -> userService.update(new User(USER_1.getId(), null, USER_1.getPassword(), Instant.now(), Status.ACTIVE)));
+        validateRootCause(UnsuitableArgument.class, () -> userService.update(new User(USER_1.getId(), USER_1.getUsername(), "   ", Instant.now(), Status.ACTIVE)));
+        validateRootCause(UnsuitableArgument.class, () -> userService.update(new User(USER_1.getId(), USER_1.getUsername(), null, Instant.now(), Status.ACTIVE)));
+        validateRootCause(UnsuitableArgument.class, () -> userService.update(new User(USER_1.getId(), USER_1.getUsername(), USER_1.getPassword(), null, Status.ACTIVE)));
+        validateRootCause(UnsuitableArgument.class, () -> userService.update(new User(USER_1.getId(), USER_1.getUsername(), USER_1.getPassword(), Instant.now(), null)));
     }
 
     @Test

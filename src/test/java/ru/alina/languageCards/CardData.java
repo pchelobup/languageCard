@@ -1,5 +1,6 @@
 package ru.alina.languageCards;
 
+import ru.alina.languageCards.dto.CardTo;
 import ru.alina.languageCards.model.Card;
 import ru.alina.languageCards.model.Level;
 
@@ -35,6 +36,10 @@ public class CardData {
 
     public static Card getUpdated() {
         return new Card(CARD_1.getId(), CARD_1.getWord(), CARD_1.getTranslation(), Level.TWO, LocalDate.now());
+    }
+
+    public static CardTo getUpdatedCardTo() {
+        return new CardTo(CardData.CARD_1.getId(), "test", "тест");
     }
 
     public static void match(Card actual, Card expected) {
