@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity(name = "card")
 public class Card extends BaseEntity {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
