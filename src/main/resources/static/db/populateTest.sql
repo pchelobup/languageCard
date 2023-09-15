@@ -25,7 +25,7 @@ VALUES (1, 200),
        (1, 201),
        (2, 200);
 
-INSERT INTO card(id, user_id, word, translation, state, last_taught)
+INSERT INTO card(id, user_id, word, translation, state, last_touch)
 VALUES (1, 1, 'name', 'имя', 'LEVEL_ONE', '2023-09-30'),
        (2, 1, 'value', 'значение','LEVEL_TWO', '2023-09-30'),
        (3, 1, 'instance', 'экземпляр объекта','LEVEL_SIX', '2023-09-30'),

@@ -15,15 +15,15 @@ public class CardRequestCreateTo {
     private String translation;
 
     @NotNull
-    private LocalDate lastTaught;
+    private LocalDate lastTouch;
 
     public CardRequestCreateTo() {
     }
 
-    public CardRequestCreateTo(String word, String translation, LocalDate lastTaught) {
+    public CardRequestCreateTo(String word, String translation, LocalDate lastTouch) {
         this.word = word;
         this.translation = translation;
-        this.lastTaught = lastTaught;
+        this.lastTouch = lastTouch;
     }
 
     public String getWord() {
@@ -42,20 +42,20 @@ public class CardRequestCreateTo {
         this.translation = translation;
     }
 
-    public LocalDate getLastTaught() {
-        return lastTaught;
+    public LocalDate getLastTouch() {
+        return lastTouch;
     }
 
-    public void setLastTaught(LocalDate lastTaught) {
-        this.lastTaught = lastTaught;
+    public void setLastTouch(LocalDate lastTouch) {
+        this.lastTouch = lastTouch;
     }
 
     @Override
     public String toString() {
-        return "CardTo{" +
+        return "CardRequestCreateTo{" +
                 "word='" + word + '\'' +
                 ", translation='" + translation + '\'' +
-                ", lastTaught=" + lastTaught +
+                ", lastTouch=" + lastTouch +
                 '}';
     }
 }

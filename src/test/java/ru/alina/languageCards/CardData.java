@@ -43,10 +43,10 @@ public class CardData {
     }
 
     public static void match(Card actual, Card expected) {
-        Matcher.match(actual, expected, "user", "lastTaught");
+        Matcher.match(actual, expected, "user", "lastTouch");
     }
 
     public static void match(List<Card> actual, List<Card> expected) {
-        Matcher.match(actual, expected, "user", "lastTaught");
+        Matcher.match(actual, expected, "user", "lastTouch");
     }
 }

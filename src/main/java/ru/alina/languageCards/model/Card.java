@@ -26,17 +26,17 @@ public class Card extends BaseEntity {
     @NotNull
     private State state;
 
-    @Column(name = "last_taught")
+    @Column(name = "last_touch")
     @NotNull
-    private LocalDate lastTaught;
+    private LocalDate lastTouch;
 
     public Card() {
     }
 
-    public Card(String word, String translation, LocalDate lastTaught) {
+    public Card(String word, String translation, LocalDate lastTouch) {
         this.word = word;
         this.translation = translation;
-        this.lastTaught = lastTaught;
+        this.lastTouch = lastTouch;
     }
 
     public Card(Long id, String word, String translation, State state) {
@@ -46,12 +46,12 @@ public class Card extends BaseEntity {
         this.state = state;
     }
 
-    public Card(Long id, String word, String translation, State state, LocalDate lastTaught) {
+    public Card(Long id, String word, String translation, State state, LocalDate lastTouch) {
         super(id);
         this.word = word;
         this.translation = translation;
         this.state = state;
-        this.lastTaught = lastTaught;
+        this.lastTouch = lastTouch;
     }
 
     public User getUser() {
@@ -86,12 +86,12 @@ public class Card extends BaseEntity {
         this.state = state;
     }
 
-    public LocalDate getLastTaught() {
-        return lastTaught;
+    public LocalDate getLastTouch() {
+        return lastTouch;
     }
 
-    public void setLastTaught(LocalDate lastTaught) {
-        this.lastTaught = lastTaught;
+    public void setLastTouch(LocalDate lastTaught) {
+        this.lastTouch = lastTaught;
     }
 
     @Override
@@ -100,7 +100,7 @@ public class Card extends BaseEntity {
                 "word='" + word + '\'' +
                 ", translation='" + translation + '\'' +
                 ", state=" + state +
-                ", lastTaught=" + lastTaught +
+                ", lastTouch=" + lastTouch +
                 ", id=" + id +
                 '}';
     }

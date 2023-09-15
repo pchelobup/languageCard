@@ -47,10 +47,10 @@ class CardServiceTest extends ServiceTest {
 
     @Test
     void createWithException() {
-        validateRootCause(ConstraintViolationException.class, () -> cardService.create(new Card(null, getNew().getTranslation(), getNew().getLastTaught()), USER1_ID));
-        validateRootCause(ConstraintViolationException.class, () -> cardService.create(new Card(" ", getNew().getTranslation(), getNew().getLastTaught()), USER1_ID));
-        validateRootCause(ConstraintViolationException.class, () -> cardService.create(new Card(getNew().getWord(), null, getNew().getLastTaught()), USER1_ID));
-        validateRootCause(ConstraintViolationException.class, () -> cardService.create(new Card(getNew().getWord(), " ", getNew().getLastTaught()), USER1_ID));
+        validateRootCause(ConstraintViolationException.class, () -> cardService.create(new Card(null, getNew().getTranslation(), getNew().getLastTouch()), USER1_ID));
+        validateRootCause(ConstraintViolationException.class, () -> cardService.create(new Card(" ", getNew().getTranslation(), getNew().getLastTouch()), USER1_ID));
+        validateRootCause(ConstraintViolationException.class, () -> cardService.create(new Card(getNew().getWord(), null, getNew().getLastTouch()), USER1_ID));
+        validateRootCause(ConstraintViolationException.class, () -> cardService.create(new Card(getNew().getWord(), " ", getNew().getLastTouch()), USER1_ID));
         validateRootCause(ConstraintViolationException.class, () -> cardService.create(new Card(getNew().getWord(), getNew().getTranslation(), null), USER1_ID));
     }
 
