@@ -43,7 +43,7 @@ CREATE TABLE card
     user_id     BIGINT       NOT NULL,
     word        VARCHAR(100) NOT NULL,
     translation VARCHAR(200) NOT NULL,
-    level       VARCHAR(10)  NOT NULL,
+    state       VARCHAR(11)  NOT NULL,
     last_taught date         NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
 );

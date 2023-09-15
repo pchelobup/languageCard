@@ -21,10 +21,10 @@ public class Card extends BaseEntity {
     @NotBlank
     private String translation;
 
-    @Column(name = "level", nullable = false)
+    @Column(name = "state", nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull
-    private Level level;
+    private State state;
 
     @Column(name = "last_taught")
     @NotNull
@@ -39,18 +39,18 @@ public class Card extends BaseEntity {
         this.lastTaught = lastTaught;
     }
 
-    public Card(Long id, String word, String translation, Level level) {
+    public Card(Long id, String word, String translation, State state) {
         super(id);
         this.word = word;
         this.translation = translation;
-        this.level = level;
+        this.state = state;
     }
 
-    public Card(Long id, String word, String translation, Level level, LocalDate lastTaught) {
+    public Card(Long id, String word, String translation, State state, LocalDate lastTaught) {
         super(id);
         this.word = word;
         this.translation = translation;
-        this.level = level;
+        this.state = state;
         this.lastTaught = lastTaught;
     }
 
@@ -78,12 +78,12 @@ public class Card extends BaseEntity {
         this.translation = translation;
     }
 
-    public Level getLevel() {
-        return level;
+    public State getState() {
+        return state;
     }
 
-    public void setLevel(Level level) {
-        this.level = level;
+    public void setState(State state) {
+        this.state = state;
     }
 
     public LocalDate getLastTaught() {
@@ -99,7 +99,7 @@ public class Card extends BaseEntity {
         return "Card{" +
                 "word='" + word + '\'' +
                 ", translation='" + translation + '\'' +
-                ", level=" + level +
+                ", state=" + state +
                 ", lastTaught=" + lastTaught +
                 ", id=" + id +
                 '}';

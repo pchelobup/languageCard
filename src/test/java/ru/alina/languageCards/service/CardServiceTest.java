@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.alina.languageCards.exception.NotFoundException;
 import ru.alina.languageCards.model.Card;
-import ru.alina.languageCards.model.Level;
+import ru.alina.languageCards.model.State;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.alina.languageCards.CardData.*;
@@ -40,7 +40,7 @@ class CardServiceTest extends ServiceTest {
         long newId = created.id();
         Card newCard = getNew();
         newCard.setId(newId);
-        newCard.setLevel(Level.ONE);
+        newCard.setState(State.LEVEL_ONE);
         match(created, newCard);
         match(cardService.get(newId, USER1_ID), newCard);
     }
@@ -98,7 +98,7 @@ class CardServiceTest extends ServiceTest {
 
         validateRootCause(ConstraintViolationException.class, () -> {
             Card updated = getUpdated();
-            updated.setLevel(null);
+            updated.setState(null);
             cardService.update(updated, USER1_ID);
 
         });

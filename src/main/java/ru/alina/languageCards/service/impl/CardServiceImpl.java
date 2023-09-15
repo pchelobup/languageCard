@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.alina.languageCards.exception.NotFoundException;
 import ru.alina.languageCards.model.Card;
-import ru.alina.languageCards.model.Level;
+import ru.alina.languageCards.model.State;
 import ru.alina.languageCards.repository.CardRepository;
 import ru.alina.languageCards.repository.UserRepository;
 import ru.alina.languageCards.service.CardService;
@@ -48,7 +48,7 @@ public class CardServiceImpl implements CardService {
     public Card create(Card card, Long userId) {
         ValidationUtil.isNew(card);
         card.setUser(userRepository.getReferenceById(userId));
-        card.setLevel(Level.ONE);
+        card.setState(State.LEVEL_ONE);
         return cardRepository.save(card);
     }
 
@@ -56,7 +56,7 @@ public class CardServiceImpl implements CardService {
     @Transactional
     public void update(Card card, Long userId) {
         Assert.notNull(userId, "Id can not be null");
-        //check if this cars belong this user. in the future we can take userId from jwt and delete this chekc
+        //check if this cards belong this user. in the future we can take userId from jwt and delete this check
         get(card.getId(), userId);
         card.setUser(userRepository.getReferenceById(userId));
         checkNotFoundWithId(cardRepository.save(card), card.getId());
