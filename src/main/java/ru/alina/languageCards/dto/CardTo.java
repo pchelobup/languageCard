@@ -3,6 +3,8 @@ package ru.alina.languageCards.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
+
 public class CardTo {
 
     @NotNull
@@ -13,6 +15,9 @@ public class CardTo {
 
     @NotBlank
     private String translation;
+
+    @NotNull
+    private LocalDate lastTouch;
 
     public CardTo() {
     }
@@ -47,12 +52,21 @@ public class CardTo {
         this.translation = translation;
     }
 
+    public LocalDate getLastTouch() {
+        return lastTouch;
+    }
+
+    public void setLastTouch(LocalDate lastTouch) {
+        this.lastTouch = lastTouch;
+    }
+
     @Override
     public String toString() {
         return "CardTo{" +
                 "id=" + id +
                 ", word='" + word + '\'' +
                 ", translation='" + translation + '\'' +
+                ", lastTouch=" + lastTouch +
                 '}';
     }
 }

@@ -12,6 +12,8 @@ import ru.alina.languageCards.jwt.JwtTokenUtils;
 import ru.alina.languageCards.model.Card;
 import ru.alina.languageCards.service.CardService;
 
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping(value = "/card")
 public class CardController {
@@ -30,13 +32,13 @@ public class CardController {
     @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable Long id, HttpServletRequest request) {
         Long userId = jwtTokenUtils.getUserId(request);
-        return new ResponseEntity<>(cardService.get(id, userId), HttpStatus.OK );
+        return new ResponseEntity<>(modelMapper.map(cardService.get(id, userId), CardTo.class), HttpStatus.OK );
     }
 
     @GetMapping()
     public ResponseEntity<?> getAll(HttpServletRequest request) {
         Long userId = jwtTokenUtils.getUserId(request);
-        return new ResponseEntity<>(cardService.getAll(userId), HttpStatus.OK );
+        return new ResponseEntity<>(cardService.getAll(userId).stream().map(c -> modelMapper.map(c, CardTo.class)).collect(Collectors.toList()), HttpStatus.OK );
     }
 
     @PostMapping("/create")
