@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity(name = "card")
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "word", "translation" }) })
 public class Card extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)

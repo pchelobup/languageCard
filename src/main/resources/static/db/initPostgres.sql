@@ -45,7 +45,8 @@ CREATE TABLE card
     translation VARCHAR(200) NOT NULL,
     state       VARCHAR(11)  NOT NULL,
     last_touch date         NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    UNIQUE (word, translation)
 );
 
 CREATE TABLE refresh_token
